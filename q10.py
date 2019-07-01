@@ -15,3 +15,14 @@
 ## jjj,18
 ##
 ##
+data = open('data.csv', 'r').readlines()
+data = [line.replace('\t', ' ') for line in data]
+data = [line.replace('\n', '') for line in data]
+data = [line.split(' ') for line in data]
+clave = [line[4].split(',') for line in data]
+clave = [[elem[:3] for elem in line] for line in clave]
+clave = sum(clave, [])
+claveorg = sorted(set(clave))
+for n in claveorg:
+    rep = [line for line in clave if line == n].count(n)
+    print(str(n)+','+str(rep))

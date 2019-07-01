@@ -17,3 +17,11 @@
 ## ('9', ['A', 'B', 'C', 'E'])
 ##
 ##
+data = open('data.csv', 'r').readlines()
+data = [line.replace('\t', ' ') for line in data]
+data = [line.replace('\n', '') for line in data]
+data = [line.split(' ') for line in data]
+numero = sorted(set([line[1] for line in data]))
+for n in numero:
+    rep = sorted(set([line[0] for line in data if line[1] == n]))
+    print((n,rep))
